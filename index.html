@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wood Engraving G-code Generator v4.3.2 - Arseniy's Lab</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <!-- Load utility modules first -->
+    <script type="text/babel" src="./src/utils/transforms.js"></script>
+    <script type="text/babel" src="./src/utils/imageProcessing.js"></script>
+    <script type="text/babel" src="./src/utils/gcodeGenerator.js"></script>
+    <script type="text/babel" src="./src/utils/gcodeParser.js"></script>
+    <script type="text/babel" src="./src/utils/qrcode.js"></script>
+    
+    <!-- Load hooks -->
+    <script type="text/babel" src="./src/hooks/useHistory.js"></script>
+    
+    <!-- Load components -->
+    <script type="text/babel" src="./src/components/modals/GcodeModal.jsx"></script>
+    <script type="text/babel" src="./src/components/modals/TestGridModal.jsx"></script>
+    <script type="text/babel" src="./src/components/modals/ImportModal.jsx"></script>
+    <script type="text/babel" src="./src/components/modals/QRCodeModal.jsx"></script>
+    <script type="text/babel" src="./src/components/Canvas.jsx"></script>
+    <script type="text/babel" src="./src/components/Toolbar.jsx"></script>
+    <script type="text/babel" src="./src/components/Sidebar.jsx"></script>
+    
+    <!-- Load main App -->
+    <script type="text/babel" src="./src/App.jsx"></script>
+    
+    <!-- Initialize -->
+    <script type="text/babel">
+        const { App } = window;
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
