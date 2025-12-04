@@ -26,16 +26,17 @@ No installation needed - runs directly in your browser.
 
 ## 🔥 How It Works
 
-1. **Heat the nozzle** (typically 250-350°C depending on wood type)
-2. **Upload your image** to the web app
-3. **Adjust settings** (burn time, depth, temperature)
-4. **Generate G-code**
-5. **Send to your 3D printer** and watch it burn!
+1. **Upload your image** to the web app
+2. **Adjust settings** (burn time, depth, temperature)
+3. **Generate G-code** - includes automatic heating commands
+4. **Send to your 3D printer** and watch it burn!
 
-The heated nozzle acts like a wood burning pen, creating detailed engravings by controlling:
+The G-code controls everything automatically:
+- **Temperature**: Heats nozzle to specified temperature (250-350°C)
 - **Dwell time**: How long the nozzle stays at each point
-- **Depth (Z-axis)**: How deep the nozzle presses
-- **Temperature**: Heat level for different wood types
+- **Depth (Z-axis)**: How deep the nozzle presses into wood
+
+No manual preparation needed - just load the G-code and start!
 
 ## 🚀 Quick Start
 
