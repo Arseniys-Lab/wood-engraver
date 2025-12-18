@@ -32,7 +32,7 @@ No installation needed - runs directly in your browser.
 4. **Send to your 3D printer** and watch it burn!
 
 The G-code controls everything automatically:
-- **Temperature**: Heats nozzle to specified temperature (250-350°C)
+- **Temperature**: Heats nozzle to specified temperature
 - **Dwell time**: How long the nozzle stays at each point
 - **Depth (Z-axis)**: How deep the nozzle presses into wood
 
@@ -73,9 +73,9 @@ python -m http.server 8000
 2. **Choose processing mode**: Standard, Dithering, or Edge Detection
 3. **Adjust threshold** to control detail level
 4. **Set engraving parameters**:
-   - Burn time: 2-10s per point (start with 3s)
-   - Depth: -0.1 to -0.5mm (start with -0.2mm)
-   - Temperature: 250-350°C (start with 300°C)
+   - Burn time: 2-20s per point (use test grid to figure out)
+   - Depth: 0.0 to -1.0mm (use test grid)
+   - Temperature: 300°C (if your printer supports higher feel free to try)
 5. **Generate G-code** (💾 button)
 6. **Send to printer**
 
@@ -114,17 +114,6 @@ src/
 - **No bundler** - Pure static files
 - **No backend** - Everything runs client-side
 
-## 💡 Tips & Tricks
-
-**Wood Types:**
-- Plywood: 280-300°C, 3-5s
-- Pine: 300-320°C, 2-4s
-- Birch: 320-350°C, 3-6s
-
-**Common Issues:**
-- Too light? Increase burn time or temperature
-- Too dark? Decrease burn time
-- Uneven burns? Check nozzle cleanliness
 
 ## 🎬 Created By
 
