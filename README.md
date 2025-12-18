@@ -119,7 +119,7 @@ src/
 
 **Arseniy's Lab** - Off-meta engineering and maker content
 
-[YouTube Channel](https://youtube.com/@arseniyslab)
+[YouTube Channel](https://youtube.com/@arseniylab)
 
 ## 🤝 Contributing
 
