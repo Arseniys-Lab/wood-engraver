@@ -58,7 +58,7 @@ python -m http.server 8000
 ## 📋 Requirements
 
 **Hardware:**
-- 3D printer with heated nozzle (any FDM printer works)
+- 3D printer with bed levelling feature (inductive sensor doesn't work)
 - Wood surface (plywood, pine, birch work well)
 - Marlin or Klipper firmware
 
