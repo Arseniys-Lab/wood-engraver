@@ -1,6 +1,6 @@
 // G-code generation utilities
 
-const VERSION = "4.3.2";
+const VERSION = "4.3.3";
 
 window.generateEngravingGCode = ({
   points,

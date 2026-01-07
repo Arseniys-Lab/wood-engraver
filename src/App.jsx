@@ -14,7 +14,7 @@ const { parseGCodeFile } = window;
 const { generateEngravingGCode, generateTestGridGCode, downloadGCode } = window;
 const ImageProcessing = window.ImageProcessing;
 
-const VERSION = "4.3.2";
+const VERSION = "4.3.3";
 
 window.App = () => {
   const [activeTab, setActiveTab] = useState('engraving');
@@ -1011,7 +1011,7 @@ G90`;
     
     if (activeTab === 'test-grid') {
       const delta = e.deltaY > 0 ? -0.5 : 0.5;
-      const newSpacing = Math.max(5, Math.min(50, testGrid.spacing + delta));
+      const newSpacing = Math.max(1, Math.min(50, testGrid.spacing + delta));
       setTestGrid({...testGrid, spacing: Math.round(newSpacing * 10) / 10});
     } else if (tool === 'move' && qrConfig) {
       // QR code density control when hovering over QR
@@ -1690,12 +1690,13 @@ G90`;
                       <div className="space-y-1.5 text-sm">
                         <div>
                           <label className="text-xs text-gray-400">Point Spacing (mm)</label>
-                          <input 
-                            type="number" 
+                          <input
+                            type="number"
                             step="0.5"
-                            value={testGrid.spacing} 
+                            min="1"
+                            value={testGrid.spacing}
                             onChange={(e) => setTestGrid({...testGrid, spacing: parseFloat(e.target.value)})}
-                            className="w-full px-2 py-1 bg-gray-800 border border-gray-700 rounded" 
+                            className="w-full px-2 py-1 bg-gray-800 border border-gray-700 rounded"
                           />
                         </div>
                         <div>

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Version Management
 
-**Current Version**: 4.3.2
+**Current Version**: 4.3.3
 
 When making changes to the codebase, **always increment the version number** and update it in these files:
 - `src/App.jsx` - Line 17: `const VERSION = "x.x.x";`
@@ -18,13 +18,14 @@ When making changes to the codebase, **always increment the version number** and
 - Increment major for breaking changes (4.3.0 → 5.0.0)
 
 **Recent Changes**:
+- v4.3.3: Reduced minimum test grid spacing from 5mm to 1mm, allowing finer calibration grids
 - v4.3.2: Fixed toolbar button text wrapping by using 2xl breakpoint and whitespace-nowrap, ensuring buttons always stay single-row
 - v4.3.1: Made toolbar buttons responsive (text hides on small screens, icons remain with tooltips), simplified point pattern buttons (removed icons, consistent text sizing)
 - v4.3.0: Combined point pattern & image processing UI sections, moved printer settings before statistics, added test grid cookie persistence, fixed canvas shift between tabs, made generate button sticky, optimized UI for smaller screens
 
 ## Project Overview
 
-Wood Engraving G-code Generator v4.3.2 - A modular React application for generating G-code from images for wood engraving on 3D printers. The application processes images into point patterns and generates optimized G-code with features like bed leveling, temperature control, and test grid generation.
+Wood Engraving G-code Generator v4.3.3 - A modular React application for generating G-code from images for wood engraving on 3D printers. The application processes images into point patterns and generates optimized G-code with features like bed leveling, temperature control, and test grid generation.
 
 ## Architecture
 
