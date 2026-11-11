@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bg{fill:#2a2420}.d{fill:#f3ece0}.h{fill:#c4532f}
+    @media (prefers-color-scheme: dark){.bg{fill:#efe6da}.d{fill:#161311}.h{fill:#e2703e}}
+  </style>
+  <rect class="bg" width="32" height="32" rx="8"/>
+  <circle class="d" cx="9" cy="9" r="2.6"/><circle class="h" cx="16" cy="9" r="2.6"/><circle class="d" cx="23" cy="9" r="2.6"/>
+  <circle class="h" cx="9" cy="16" r="2.6"/><circle class="d" cx="16" cy="16" r="2.6"/><circle class="h" cx="23" cy="16" r="2.6"/>
+  <circle class="d" cx="9" cy="23" r="2.6"/><circle class="h" cx="16" cy="23" r="2.6"/><circle class="d" cx="23" cy="23" r="2.6"/>
+</svg>

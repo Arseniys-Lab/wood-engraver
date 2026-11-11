@@ -1,0 +1,382 @@
+/* Arseniy's Lab — shared design tokens and header/nav component.
+ *
+ * Served at /shared/lab.css on arseniy-lab.com. Used by the blog and by every
+ * app under /apps/*. Everything is either a CSS custom property (--lab-*) or a
+ * class prefixed with .lab-, so apps can include this file without their own
+ * styles being touched. Only `body.lab-site` (the blog) gets base element styles.
+ *
+ * Theme: follows the OS setting; force with <html data-theme="light|dark">.
+ */
+
+/* ---------- Fonts (self-hosted, SIL OFL) ---------- */
+@font-face {
+  font-family: "Fraunces";
+  src: url("fonts/fraunces.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("fonts/jetbrains-mono.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Tokens: light ("paper & wood") ---------- */
+:root {
+  color-scheme: light;
+
+  --lab-font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --lab-font-ui: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --lab-font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --lab-bg: #f3ece0;          /* page: kraft paper */
+  --lab-surface: #fbf8f2;     /* panels, cards */
+  --lab-surface-2: #ece3d3;   /* inset, hover, secondary buttons */
+  --lab-surface-3: #e2d6c2;   /* pressed */
+  --lab-ink: #2a2420;         /* main text */
+  --lab-ink-muted: #6b5f55;   /* secondary text */
+  --lab-ink-faint: #9a8d80;   /* placeholders, disabled */
+  --lab-border: #d8ccb8;
+  --lab-border-strong: #bfae95;
+
+  --lab-accent: #a4472b;      /* burnt terracotta */
+  --lab-accent-hover: #8e3b22;
+  --lab-accent-ink: #fffaf5;  /* text on accent */
+  --lab-accent-soft: #f2dccf; /* tinted backgrounds, selected chips */
+  --lab-accent-soft-ink: #7c3420;
+
+  --lab-ok: #4f7a3a;
+  --lab-warn: #a86b12;
+  --lab-danger: #b3362b;
+
+  --lab-canvas: #fdfbf7;      /* work areas (editors) */
+  --lab-canvas-line: #e6dccb;
+
+  --lab-focus: 0 0 0 3px color-mix(in srgb, var(--lab-accent) 35%, transparent);
+  --lab-shadow-1: 0 1px 2px rgb(60 40 20 / 0.06), 0 1px 1px rgb(60 40 20 / 0.04);
+  --lab-shadow-2: 0 8px 24px rgb(60 40 20 / 0.12), 0 2px 6px rgb(60 40 20 / 0.08);
+
+  --lab-radius-s: 6px;
+  --lab-radius-m: 10px;
+  --lab-radius-l: 16px;
+  --lab-radius-pill: 999px;
+
+  --lab-header-h: 56px;
+}
+
+/* ---------- Tokens: dark ("charcoal & ember") ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --lab-bg: #161311;
+    --lab-surface: #201b18;
+    --lab-surface-2: #2a2420;
+    --lab-surface-3: #352d28;
+    --lab-ink: #efe6da;
+    --lab-ink-muted: #a99b8d;
+    --lab-ink-faint: #75685d;
+    --lab-border: #3a312b;
+    --lab-border-strong: #54473e;
+    --lab-accent: #e2703e;
+    --lab-accent-hover: #f0824f;
+    --lab-accent-ink: #1c0f08;
+    --lab-accent-soft: #3b2319;
+    --lab-accent-soft-ink: #f2a57f;
+    --lab-ok: #8fbf6a;
+    --lab-warn: #e0a645;
+    --lab-danger: #f07060;
+    --lab-canvas: #0f0d0c;
+    --lab-canvas-line: #26201c;
+    --lab-shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
+    --lab-shadow-2: 0 10px 30px rgb(0 0 0 / 0.5), 0 2px 6px rgb(0 0 0 / 0.35);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --lab-bg: #161311;
+  --lab-surface: #201b18;
+  --lab-surface-2: #2a2420;
+  --lab-surface-3: #352d28;
+  --lab-ink: #efe6da;
+  --lab-ink-muted: #a99b8d;
+  --lab-ink-faint: #75685d;
+  --lab-border: #3a312b;
+  --lab-border-strong: #54473e;
+  --lab-accent: #e2703e;
+  --lab-accent-hover: #f0824f;
+  --lab-accent-ink: #1c0f08;
+  --lab-accent-soft: #3b2319;
+  --lab-accent-soft-ink: #f2a57f;
+  --lab-ok: #8fbf6a;
+  --lab-warn: #e0a645;
+  --lab-danger: #f07060;
+  --lab-canvas: #0f0d0c;
+  --lab-canvas-line: #26201c;
+  --lab-shadow-1: 0 1px 2px rgb(0 0 0 / 0.4);
+  --lab-shadow-2: 0 10px 30px rgb(0 0 0 / 0.5), 0 2px 6px rgb(0 0 0 / 0.35);
+}
+
+/* ---------- Blog base (opt-in) ---------- */
+body.lab-site {
+  margin: 0;
+  background: var(--lab-bg);
+  color: var(--lab-ink);
+  font: 400 17px/1.6 var(--lab-font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+/* :where() keeps these at zero specificity so .lab-* classes always win. */
+:where(body.lab-site) :where(h1, h2, h3) {
+  font-family: var(--lab-font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 72, "SOFT" 50;
+}
+:where(body.lab-site) :where(a) { color: var(--lab-accent); text-underline-offset: 3px; }
+:where(body.lab-site) :where(a:hover) { color: var(--lab-accent-hover); }
+:where(body.lab-site) :where(code, pre, kbd) { font-family: var(--lab-font-mono); font-size: 0.9em; }
+
+/* ---------- Header ---------- */
+.lab-header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--lab-header-h);
+  padding: 8px 16px;
+  background: var(--lab-surface);
+  border-bottom: 1px solid var(--lab-border);
+  color: var(--lab-ink);
+  font-family: var(--lab-font-ui);
+}
+.lab-header-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Brand + menu (works without JS: <details>/<summary>) */
+.lab-nav { position: relative; }
+.lab-nav > summary { list-style: none; }
+.lab-nav > summary::-webkit-details-marker { display: none; }
+
+.lab-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 4px 4px;
+  margin-left: -4px;
+  border-radius: var(--lab-radius-m);
+  cursor: pointer;
+  user-select: none;
+  color: inherit;
+  text-decoration: none;
+}
+.lab-brand:hover { background: var(--lab-surface-2); }
+.lab-brand:focus-visible { outline: none; box-shadow: var(--lab-focus); }
+
+/* Logo: 3x3 dots = punched strip holes / burned points. Colors come through
+   custom properties so they also reach inside <use href="#lab-mark">. */
+.lab-mark {
+  width: 32px; height: 32px; flex: none; display: block;
+  --lab-mark-bg: var(--lab-ink);
+  --lab-mark-dot: var(--lab-bg);
+  --lab-mark-hot: var(--lab-accent);
+}
+
+.lab-brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.lab-brand-lab {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--lab-ink-muted);
+}
+.lab-brand-app {
+  font-family: var(--lab-font-display);
+  font-size: 20px;
+  font-weight: 600;
+  font-variation-settings: "opsz" 48, "SOFT" 50;
+  color: var(--lab-ink);
+}
+.lab-brand-chevron {
+  width: 16px; height: 16px; flex: none;
+  color: var(--lab-ink-muted);
+  transition: transform 0.15s ease;
+}
+.lab-nav[open] .lab-brand-chevron { transform: rotate(180deg); }
+
+.lab-nav-panel {
+  position: absolute;
+  z-index: 1000;
+  top: calc(100% + 6px);
+  left: -4px;
+  box-sizing: border-box;
+  width: min(320px, calc(100vw - 24px));
+  padding: 6px;
+  background: var(--lab-surface);
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-l);
+  box-shadow: var(--lab-shadow-2);
+  font-size: 14px;
+}
+.lab-nav-panel a {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 8px 10px;
+  border-radius: var(--lab-radius-m);
+  color: var(--lab-ink);
+  text-decoration: none;
+  font-weight: 500;
+}
+.lab-nav-panel a small { font-weight: 400; font-size: 12px; color: var(--lab-ink-muted); }
+.lab-nav-panel a:hover { background: var(--lab-surface-2); }
+.lab-nav-panel a:focus-visible { outline: none; box-shadow: var(--lab-focus); }
+.lab-nav-panel a[aria-current="page"] { background: var(--lab-accent-soft); color: var(--lab-accent-soft-ink); }
+.lab-nav-panel a[aria-current="page"] small { color: inherit; opacity: 0.8; }
+.lab-nav-label {
+  padding: 10px 10px 4px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--lab-ink-faint);
+}
+.lab-nav-panel hr { border: 0; border-top: 1px solid var(--lab-border); margin: 6px 4px; }
+.lab-nav-row { display: flex; gap: 4px; }
+.lab-nav-row a { flex: 1; align-items: center; flex-direction: row; gap: 6px; justify-content: center; }
+
+/* ---------- Buttons ---------- */
+.lab-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-pill);
+  background: var(--lab-surface);
+  color: var(--lab-ink);
+  font: 500 14px/1 var(--lab-font-ui);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.lab-btn:hover { background: var(--lab-surface-2); border-color: var(--lab-border-strong); }
+.lab-btn:active { background: var(--lab-surface-3); }
+.lab-btn:focus-visible { outline: none; box-shadow: var(--lab-focus); }
+.lab-btn:disabled, .lab-btn[aria-disabled="true"] { color: var(--lab-ink-faint); cursor: default; background: transparent; }
+.lab-btn svg { width: 16px; height: 16px; }
+
+.lab-btn-primary { background: var(--lab-accent); border-color: var(--lab-accent); color: var(--lab-accent-ink); }
+.lab-btn-primary:hover { background: var(--lab-accent-hover); border-color: var(--lab-accent-hover); }
+.lab-btn-primary:active { background: var(--lab-accent-hover); }
+
+.lab-btn-ink { background: var(--lab-ink); border-color: var(--lab-ink); color: var(--lab-bg); }  /* active tool */
+.lab-btn-ink:hover { background: var(--lab-ink); opacity: 0.9; }
+
+.lab-btn-ghost { background: transparent; border-color: transparent; }
+.lab-btn-danger { color: var(--lab-danger); }
+.lab-btn-sm { height: 30px; padding: 0 10px; font-size: 13px; }
+.lab-btn-lg { height: 44px; padding: 0 20px; font-size: 15px; font-weight: 600; }
+.lab-btn-icon { width: 36px; padding: 0; }
+
+/* Segmented control (tabs, tool groups) */
+.lab-seg {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  background: var(--lab-surface-2);
+  border-radius: var(--lab-radius-pill);
+}
+.lab-seg > * {
+  height: 30px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--lab-radius-pill);
+  background: transparent;
+  color: var(--lab-ink-muted);
+  font: 500 13px/1 var(--lab-font-ui);
+  cursor: pointer;
+}
+.lab-seg > :hover { color: var(--lab-ink); }
+.lab-seg > [aria-pressed="true"], .lab-seg > [aria-selected="true"] {
+  background: var(--lab-surface);
+  color: var(--lab-ink);
+  box-shadow: var(--lab-shadow-1);
+}
+
+/* ---------- Form controls ---------- */
+.lab-field { display: flex; flex-direction: column; gap: 4px; font-family: var(--lab-font-ui); }
+.lab-label { font-size: 12px; font-weight: 500; color: var(--lab-ink-muted); }
+.lab-input, .lab-select {
+  box-sizing: border-box;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-s);
+  background: var(--lab-canvas);
+  color: var(--lab-ink);
+  font: 400 14px/1 var(--lab-font-ui);
+}
+.lab-field > .lab-input, .lab-field > .lab-select { width: 100%; min-width: 0; }
+.lab-input.lab-num { font-family: var(--lab-font-mono); font-size: 13px; }
+.lab-input:focus, .lab-select:focus { outline: none; border-color: var(--lab-accent); box-shadow: var(--lab-focus); }
+.lab-input::placeholder { color: var(--lab-ink-faint); }
+.lab-check { accent-color: var(--lab-accent); width: 16px; height: 16px; }
+
+/* ---------- Surfaces ---------- */
+.lab-panel {
+  box-sizing: border-box;
+  background: var(--lab-surface);
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-l);
+  padding: 16px;
+  color: var(--lab-ink);
+}
+.lab-panel-title {
+  margin: 0 0 10px;
+  font: 600 17px/1.2 var(--lab-font-display);
+  font-variation-settings: "opsz" 36;
+}
+.lab-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-pill);
+  background: var(--lab-surface);
+  color: var(--lab-ink);
+  font: 500 12px/1 var(--lab-font-ui);
+}
+.lab-chip-accent { background: var(--lab-accent-soft); border-color: transparent; color: var(--lab-accent-soft-ink); }
+.lab-stat { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; padding: 3px 0; }
+.lab-stat > :first-child { color: var(--lab-ink-muted); }
+.lab-stat > :last-child { font-family: var(--lab-font-mono); }
+.lab-muted { color: var(--lab-ink-muted); }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 640px) {
+  .lab-header { padding: 6px 12px; gap: 8px; }
+  .lab-brand-lab { display: none; }
+  .lab-brand-app { font-size: 18px; }
+  .lab-mark { width: 28px; height: 28px; }
+}

@@ -70,7 +70,7 @@ window.Canvas = forwardRef(({
     canvas.height = canvasHeight;
 
     // Fill background (black outside bed area)
-    ctx.fillStyle = '#000000';
+    ctx.fillStyle = '#0f0d0c';
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
     // Apply pan offset
@@ -78,7 +78,7 @@ window.Canvas = forwardRef(({
     ctx.translate(canvasPanX, canvasPanY);
 
     // Draw bed area background (lighter)
-    ctx.fillStyle = '#1a1a1a';
+    ctx.fillStyle = '#1a1613';
     ctx.fillRect(0, 0, bedWidth * scale, bedHeight * scale);
 
     // Draw bed border
@@ -142,7 +142,7 @@ window.Canvas = forwardRef(({
       const screenY = (bedHeight - point.y) * scale;
 
       // Draw point
-      ctx.fillStyle = '#ff6b6b';
+      ctx.fillStyle = '#e2703e';
       ctx.beginPath();
       ctx.arc(screenX, screenY, Math.max(3, nozzleDiameter * scale), 0, Math.PI * 2);
       ctx.fill();
@@ -341,7 +341,7 @@ window.Canvas = forwardRef(({
       return;
     }
 
-    ctx.fillStyle = '#ff6b6b';
+    ctx.fillStyle = '#e2703e';
     points.forEach(point => {
       const bedPoint = gridToBed(point, gridOffsetX, gridOffsetY, gridRotation, bedWidth, bedHeight);
 

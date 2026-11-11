@@ -8,13 +8,14 @@ const { GcodeModal } = window;
 const { TestGridModal } = window;
 const { ImportModal } = window;
 const { QRCodeModal } = window;
+const { LabHeader } = window;
 const { useHistory } = window;
 const { gridToBed, bedToGrid } = window;
 const { parseGCodeFile } = window;
 const { generateEngravingGCode, generateTestGridGCode, downloadGCode } = window;
 const ImageProcessing = window.ImageProcessing;
 
-const VERSION = "4.3.3";
+const VERSION = "4.4.0";
 
 window.App = () => {
   const [activeTab, setActiveTab] = useState('engraving');
@@ -1352,43 +1353,26 @@ G90`;
   
   return (
     <div className="h-screen bg-gray-900 text-gray-100 flex flex-col">
-      <div className="bg-gray-800 px-4 py-2 flex items-center justify-between border-b border-gray-700">
-        <div className="flex items-center gap-3">
-          <h1 className="text-xl font-bold">Wood Engraving Generator</h1>
-          <span className="text-xs text-gray-400">v{VERSION}</span>
-          <a 
-            href="https://www.youtube.com/@ArseniyLab" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-sm text-blue-400 hover:text-blue-300 transition-colors"
-          >
-            made by Arseniy's Lab
-          </a>
-        </div>
-        
-        <div className="flex gap-2">
+      <LabHeader appName="Wood Engraver" version={VERSION}>
+        <div className="lab-seg" role="tablist" aria-label="Mode">
           <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'engraving'}
             onClick={() => setActiveTab('engraving')}
-            className={`px-4 py-2 rounded transition ${
-              activeTab === 'engraving' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-            }`}
           >
-            🎨 Engraving
+            Engraving
           </button>
           <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === 'test-grid'}
             onClick={() => setActiveTab('test-grid')}
-            className={`px-4 py-2 rounded transition ${
-              activeTab === 'test-grid' 
-                ? 'bg-blue-600 text-white' 
-                : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-            }`}
           >
-            🧪 Test Grid
+            Test grid
           </button>
         </div>
-      </div>
+      </LabHeader>
       
       <div className="flex-1 flex overflow-hidden">
         {activeTab === 'engraving' && (

@@ -4,10 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Version Management
 
-**Current Version**: 4.3.3
+**Current Version**: 4.4.0
 
 When making changes to the codebase, **always increment the version number** and update it in these files:
-- `src/App.jsx` - Line 17: `const VERSION = "x.x.x";`
+- `src/App.jsx` - Line 18: `const VERSION = "x.x.x";`
 - `src/utils/gcodeGenerator.js` - Line 3: `const VERSION = "x.x.x";`
 - `index.html` - Line 6: `<title>Wood Engraving G-code Generator vx.x.x - Arseniy's Lab</title>`
 
@@ -18,6 +18,7 @@ When making changes to the codebase, **always increment the version number** and
 - Increment major for breaking changes (4.3.0 → 5.0.0)
 
 **Recent Changes**:
+- v4.4.0: Arseniy's Lab look: shared header with the lab menu (`LabHeader.jsx`, styles in `vendor/lab/`), warm charcoal + ember palette via `tailwind.config` in index.html (grays → charcoal, all accent hues → ember), Inter/JetBrains Mono fonts, CDN libraries pinned to exact versions
 - v4.3.3: Reduced minimum test grid spacing from 5mm to 1mm, allowing finer calibration grids
 - v4.3.2: Fixed toolbar button text wrapping by using 2xl breakpoint and whitespace-nowrap, ensuring buttons always stay single-row
 - v4.3.1: Made toolbar buttons responsive (text hides on small screens, icons remain with tooltips), simplified point pattern buttons (removed icons, consistent text sizing)
@@ -25,7 +26,14 @@ When making changes to the codebase, **always increment the version number** and
 
 ## Project Overview
 
-Wood Engraving G-code Generator v4.3.3 - A modular React application for generating G-code from images for wood engraving on 3D printers. The application processes images into point patterns and generates optimized G-code with features like bed leveling, temperature control, and test grid generation.
+Wood Engraving G-code Generator v4.4.0 - A modular React application for generating G-code from images for wood engraving on 3D printers. The application processes images into point patterns and generates optimized G-code with features like bed leveling, temperature control, and test grid generation.
+
+## Look and feel
+
+The app is part of Arseniy's Lab (arseniy-lab.com, served at `/apps/wood-engraver/`).
+- `vendor/lab/` is a copy of the site's shared style (`lab.css`, fonts, `lab-nav.js`). Don't edit it here; re-copy from the site repo.
+- Colors: keep using Tailwind `gray-*` and `blue-*` classes; `tailwind.config` in index.html maps them to the lab palette. Don't introduce new hex colors in JSX.
+- The header is `LabHeader` (lab menu + app name); put app-level controls in its children.
 
 ## Architecture
 
@@ -59,7 +67,7 @@ The order in `index.html` must be maintained:
 
 3. **Components** - React UI components
    - Modal components first (GcodeModal, TestGridModal, ImportModal, QRCodeModal)
-   - Then Canvas, Toolbar, Sidebar
+   - Then LabHeader, Canvas, Toolbar, Sidebar
 
 4. **App** - Main application logic (`App.jsx`)
 
