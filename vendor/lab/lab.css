@@ -205,6 +205,7 @@ body.lab-site {
   color: var(--lab-ink-muted);
 }
 .lab-brand-app {
+  white-space: nowrap;
   font-family: var(--lab-font-display);
   font-size: 20px;
   font-weight: 600;
@@ -375,7 +376,10 @@ body.lab-site {
 
 /* ---------- Small screens ---------- */
 @media (max-width: 640px) {
-  .lab-header { padding: 6px 12px; gap: 8px; }
+  .lab-header { padding: 6px 12px; gap: 8px; flex-wrap: wrap; }
+  /* App controls drop to their own full-width row under the brand. */
+  .lab-header-actions { margin-left: 0; width: 100%; justify-content: flex-end; }
+  .lab-header-actions > * { white-space: nowrap; }
   .lab-brand-lab { display: none; }
   .lab-brand-app { font-size: 18px; }
   .lab-mark { width: 28px; height: 28px; }
